@@ -1,5 +1,9 @@
 # Top Cryptocurrency Lister
 
+[View Demo](https://romantic-varahamihira-67282c.netlify.app/)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4a8402a1-1aa0-40e9-90c5-df2e13f75f20/deploy-status)](https://app.netlify.com/sites/romantic-varahamihira-67282c/deploys)
+
 A Vue SPA to fetch latest data for the top 100 cyrptocurrencies using the
 [Coinranking API](https://coinranking.com). Data is auto-updated every 2
 minutes.
