@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+const apiUrl = `${process.env.VUE_APP_API_URL}/coins`
+
 // initial state
 const state = () => ({
   coins: [],
@@ -24,7 +26,7 @@ const getters = {
 const actions = {
   getAllCoins({ state, commit }) {
     axios
-      .get('/api/coins', {
+      .get(apiUrl, {
         params: {
           limit: state.limit,
           offset: state.offset
