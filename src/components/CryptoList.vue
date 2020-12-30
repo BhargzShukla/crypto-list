@@ -28,7 +28,7 @@ export default {
   data() {
     return {
       pollCoinsRef: null,
-      pollCoinsDuration: 1000 * 60 * 1
+      pollCoinsDuration: 1000 * 60 * 2
     }
   },
   methods: {
