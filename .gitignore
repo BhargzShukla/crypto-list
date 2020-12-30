@@ -23,6 +23,5 @@ pnpm-debug.log*
 *.sw?
 
 # Cache
-/public
 .eslintcache
 yarn.lock
