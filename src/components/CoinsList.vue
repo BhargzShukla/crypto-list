@@ -1,39 +1,61 @@
 <template>
-  <ul>
-    <li v-for="coin in coins" :key="coin.id">
-      <img :src="coin.iconUrl" alt="coin.name" class="w-8 h-8" />
-      <p>{{ coin.name }}</p>
-      <small>{{ coin.symbol }}</small>
-      <pre>{{ coin.price | round }}</pre>
-      <code>{{ coin.change | round | percent }}</code>
-    </li>
-  </ul>
+  <div class="w-full">
+    <div
+      class="grid grid-cols-4 px-2 py-3 tracking-wider uppercase bg-gray-300 rounded-lg md:grid-cols-5"
+    >
+      <small>icon</small>
+      <small class="md:col-span-2">name</small>
+      <small class="justify-self-end">price</small>
+      <small class="justify-self-end">change</small>
+    </div>
+    <ul class="row-start-2 divide-y divide-dashed">
+      <li
+        v-for="coin of coins"
+        :key="coin.id"
+        class="grid grid-cols-4 px-2 py-3 md:grid-cols-5"
+      >
+        <img
+          :src="coin.iconUrl"
+          :alt="coin.name"
+          class="self-center w-8 h-8"
+        />
+        <div class="flex flex-col items-start justify-center md:col-span-2">
+          <p class="text-sm font-semibold md:text-base">{{ coin.name }}</p>
+          <small>{{ coin.symbol }}</small>
+        </div>
+        <p class="text-sm font-thin md:text-base justify-self-end">
+          {{ coin.price | round | currency }}
+        </p>
+        <p
+          class="text-sm justify-self-end md:text-base"
+          :class="coin.change[0] === '-' ? 'text-red-500' : 'text-green-600'"
+        >
+          {{ coin.change | round | percent }}
+        </p>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
-
 export default {
   name: 'CoinList',
-  components: {
-    // CoinItem: () => import('./CoinItem')
-  },
-  computed: mapState({
-    coins: (state) => state.coins.all
-  }),
-  methods: mapActions({}),
-  created() {
-    this.$store.dispatch('coins/getAllCoins')
+  props: {
+    coins: {
+      Type: Array,
+      required: true,
+      default: []
+    }
   },
   filters: {
-    log: (val) => {
-      console.log(val)
-    },
     round: (val) => {
-      return Math.round((val * 100) / 100).toFixed(2)
+      return Number(val).toFixed(2)
     },
     percent: (val) => {
       return `${val}%`
+    },
+    currency: (val) => {
+      return `$${val}`
     }
   }
 }
