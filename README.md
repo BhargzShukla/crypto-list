@@ -1,7 +1,8 @@
 # Top Cryptocurrency Lister
 
 A Vue SPA to fetch latest data for the top 100 cyrptocurrencies using the
-[Coinranking API](https://coinranking.com).
+[Coinranking API](https://coinranking.com). Data is auto-updated every 2
+minutes.
 
 Requirements:
 
